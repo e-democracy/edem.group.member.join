@@ -16,7 +16,7 @@
     name="new-member-admin-msg.txt" 
     class="gs.group.member.join.notifymessages.NotifyAdminMessageText" 
     template="browser/templates/newmember-admin-txt.pt" 
-    layer="gs.skin.ogn.interfaces.IEDemSkin" 
+    layer="gs.skin.ogn.edem.interfaces.IEDemSkin" 
     permission="zope2.View"/>    
 
 </configure>

@@ -5,14 +5,14 @@
 
   <!-- The New Member message, in HTML and plain-text -->    
   <browser:page
-    for="Products.XWFChat.interfaces.IGSGroupFolder" 
+    for="gs.group.base.interfaces.IGSGroupFolder" 
     name="new-member-admin-msg.html" 
     class="gs.group.member.join.notifymessages.NotifyAdminMessage" 
     template="browser/templates/newmember-admin.pt" 
     layer="gs.skin.ogn.edem.interfaces.IEDemSkin" 
     permission="zope2.View"/>
   <browser:page
-    for="Products.XWFChat.interfaces.IGSGroupFolder" 
+    for="gs.group.base.interfaces.IGSGroupFolder" 
     name="new-member-admin-msg.txt" 
     class="gs.group.member.join.notifymessages.NotifyAdminMessageText" 
     template="browser/templates/newmember-admin-txt.pt" 

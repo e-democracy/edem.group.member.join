@@ -46,7 +46,7 @@
         </li>
       </ul>
       <p class="muted">  
-        You are received this message because you are an administrator of
+        You are receiving this message because you are an administrator of
         <span tal:content="view/groupInfo/name">This Group</span>.
       </p>
       <!--Website address-->

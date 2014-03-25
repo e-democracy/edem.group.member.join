@@ -15,7 +15,7 @@
   * The user may be contacted on one of the following addresses:
     <tal:block tal:repeat="e userEmail/get_addresses" tal:replace="structure string:&lt;mailto:${e}&gt;"/>
 
-You are received this message because you are an administrator  of
+You are receiving this message because you are an administrator of
 <tal:block content="view/groupInfo/name">This Group</tal:block>.
 
 Kind regards

@@ -17,7 +17,7 @@ Introduction
 ===========
 
 This module customizes components of the `GroupServer`_ group join system.
-Currently, the admin notifications for new group members of customized a bit.
+Currently, the admin notifications for new group members are customized a bit.
 
 Resources
 =========

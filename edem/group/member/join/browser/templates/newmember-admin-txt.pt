@@ -23,13 +23,14 @@ Kind regards
 
 ------------------------------------------------------------------------
 
+Terms of Use 
+  <tal:block content="string:${view/siteInfo/url}/support/rules/"/>
+
 Privacy
-  <tal:block content="string:${view/siteInfo/url}/policies/privacy"/>
+  <tal:block content="string:${view/siteInfo/url}/support/policies/privacy/"/>
 
-Acceptable Use
-  <tal:block content="string:${view/siteInfo/url}/policies/aup"/>
+Forum Content and Removal Policy
+  <tal:block content="string:${view/siteInfo/url}/support/policies/content-removal/"/>
 
-Terms of Service
-  <tal:block content="string:${view/siteInfo/url}/policies/tos"/>
 </tal:block>
 

@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="context/@@groupserver_layout/page">
+  <head>
+    <title metal:fill-slot="title"
+           tal:content="string:${view/label}: ${view/groupInfo/name}: ${view/siteInfo/get_name}">
+      Join
+    </title>
+    <tal:block metal:fill-slot="metadata">
+      <link rel="up" href="#"
+            tal:attributes="title view/groupInfo/name;
+                            href string:${view/groupInfo/relativeURL}/"/>
+      <link rel="bookmark" title="Group Homepage" href="/"
+        tal:attributes="title string:${view/groupInfo/name} Homepage;"/>
+    </tal:block>
+  </head>
+  <body>
+    <tal:block content="structure provider:groupserver.FormStatusMessage"
+      define="errors view/errors; status view/status; widgets view/widgets"
+      metal:fill-slot="messages">&#160;</tal:block>
+    <ul metal:fill-slot="breadcrumb">
+      <li><a tal:attributes="title string:${view/siteInfo/name} Homepage"
+             href="/" title="Home">&#8962;</a></li>
+      <li>
+        <a class="group" 
+           tal:attributes="href string:${view/groupInfo/relativeURL}/">
+          <strong
+            tal:content="view/groupInfo/name">This group</strong></a>
+      </li>
+      <li tal:content="view/label">Join</li>
+    </ul>
+
+    <tal:block metal:fill-slot="body">
+      <!--=mpj17= Check GS join permission -->
+      <div id="edem-group-member-join-page">
+        <h1>
+          <span tal:content="view/label"/> 
+          <span class="group" tal:content="view/groupInfo/name"/>        
+        </h1>
+        <form tal:condition="view/canJoin"
+          enctype="multipart/form-data"  method="post" action="."
+          tal:attributes="action request/URL" id="join">
+          <p id="introduction">
+            Joining 
+            <span class="group" tal:content="view/groupInfo/name"/>
+            will allow you to <strong>receive email</strong> 
+            from the group<tal:block condition="view/willPost">, and
+            <strong>post</strong> to the group</tal:block>.
+            To join 
+            <span class="group" tal:content="view/groupInfo/name"/>,
+            set how frequently you want to receive messages below, and
+            click <samp class="button">Join</samp>.
+          </p>
+          <tal:block define="widgets view/widgets">
+            <tal:block replace="structure provider:groupserver.FormWidgets"/>
+          </tal:block>
+          <div class="buttons" tal:condition="view/availableActions">
+            <tal:block repeat="action view/actions">
+              <div class="formelementbutton">
+                <span tal:replace="structure action/render">Button</span>
+              </div>
+            </tal:block>
+          </div><!--buttons-->
+        </form>
+        <div id="cannot-join"
+          class="ui-content ui-state-highlight ui-corner-all" 
+          tal:condition="not:view/canJoin">
+          <p style="margin:1.385em;">
+            <span id="login-instruction" 
+              tal:condition="view/loggedInUser/anonymous">
+              You must 
+              <a 
+                tal:attributes="href string:/login.html?came_from=${view/groupInfo/relativeURL}/join.html"
+                href="/login.html"><strong>login</strong></a> before you can join
+              <span class="group" tal:content="view/groupInfo/name"/>.
+            </span><!--login-instruction-->
+            <span class="verify-email"
+              tal:condition="python:not(view.loggedInUser.anonymous or view.hasEmail)">
+              You must <strong>verify your email address</strong> before 
+              you can join 
+              <span class="group" tal:content="view/groupInfo/name"/>.
+              <strong>Visit 
+                <a tal:attributes="href string:${view/loggedInUser/url}/emailsettings.html"
+                  href="#">your email settings page</a></strong>
+              to verify your address, or add a new address.
+            </span><!--verify-email-->
+            <span id="is-member" tal:condition="view/isMember">
+              You are a <strong>member</strong> of 
+              <span class="group" tal:content="view/groupInfo/name"/>.
+              Visit 
+              <a href="#" 
+                tal:attributes="href view/groupInfo/relativeURL">the group
+                homepage</a>
+              to participate.
+            </span><!--is-member-->
+          </p>
+        </div><!--cannot-join-->
+      </div><!--join-body-->
+    </tal:block>
+    <!--=mpj17= I do not handle the corner-case where a person
+      - has been invited to join a group, but goes to the join page.
+      - The best solution will be to present the join page, and 
+      - then process the data as if it had been a response to an
+      - invitation.
+      -->
+    <tal:block metal:fill-slot="javascript">
+      <script type="text/javascript"
+        src="/++resource++popup_help-20071218.js">&#160;</script>
+      <script type="text/javascript">
+        jQuery.noConflict()
+        jQuery(document).ready( function () {
+            GSPopupFormHelp.init('#join');
+        });
+      </script>
+    </tal:block>
+  </body>
+</html>
+

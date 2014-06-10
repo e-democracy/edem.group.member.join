@@ -3,6 +3,13 @@
   xmlns:browser="http://namespaces.zope.org/browser"
   xmlns:five="http://namespaces.zope.org/five">
 
+  <browser:page
+    for="gs.group.base.interfaces.IGSGroupMarker"
+    layer="edem.skin.interfaces.IEDemSkin" 
+    name="join.html"
+    class=".join.JoinForm"
+    permission="zope2.View"/>
+
   <!-- The New Member message, in HTML and plain-text -->    
   <browser:page
     for="gs.group.base.interfaces.IGSGroupMarker" 
